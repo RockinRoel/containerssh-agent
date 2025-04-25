@@ -65,7 +65,7 @@ dockers:
     dockerfile: Dockerfile
     build_flag_templates:
       - "--pull"
-      - "--platform linux/amd64"
+      - "--platform=linux/amd64"
     goarch: amd64
   - image_templates:
       - "quay.io/arres/containerssh/agent:{{ .Tag }}-arm64"
@@ -73,7 +73,7 @@ dockers:
     dockerfile: Dockerfile
     build_flag_templates:
       - "--pull"
-      - "--platform linux/arm64"
+      - "--platform=linux/arm64"
     goarch: arm64
 docker_manifests:
   - name_template: "quay.io/arres/containerssh/agent:latest"
