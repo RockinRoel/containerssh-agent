@@ -60,15 +60,30 @@ nfpms:
     bindir: /usr/bin
 dockers:
   - image_templates:
-      - "quay.io/arres/containerssh/agent:latest"
-      - "quay.io/arres/containerssh/agent:{{ .Tag }}"
+      - "quay.io/arres/containerssh/agent:{{ .Tag }}-amd64"
+    use: buildx
     dockerfile: Dockerfile
+    build_flag_templates:
+      - "--pull"
+      - "--platform linux/amd64"
     goarch: amd64
   - image_templates:
-      - "quay.io/arres/containerssh/agent:latest"
-      - "quay.io/arres/containerssh/agent:{{ .Tag }}"
+      - "quay.io/arres/containerssh/agent:{{ .Tag }}-arm64"
+    use: buildx
     dockerfile: Dockerfile
+    build_flag_templates:
+      - "--pull"
+      - "--platform linux/arm64"
     goarch: arm64
+docker_manifests:
+  - name_template: "quay.io/arres/containerssh/agent:latest"
+    image_templates:
+      - "quay.io/arres/containerssh/agent:{{ .Tag }}-amd64"
+      - "quay.io/arres/containerssh/agent:{{ .Tag }}-arm64"
+  - name_template: "quay.io/arres/containerssh/agent:{{ .Tag }}"
+    image_templates:
+      - "quay.io/arres/containerssh/agent:{{ .Tag }}-amd64"
+      - "quay.io/arres/containerssh/agent:{{ .Tag }}-arm64"
 source:
   enabled: true
   name_template: 'containerssh-agent-{{ .Version }}-source'
