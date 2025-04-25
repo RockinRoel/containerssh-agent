@@ -60,17 +60,13 @@ nfpms:
     bindir: /usr/bin
 dockers:
   - image_templates:
-      - "containerssh/agent:latest"
-      - "containerssh/agent:{{ .Tag }}"
-      - "quay.io/containerssh/agent:latest"
-      - "quay.io/containerssh/agent:{{ .Tag }}"
+      - "quay.io/arres/containerssh/agent:latest"
+      - "quay.io/arres/containerssh/agent:{{ .Tag }}"
     dockerfile: Dockerfile
     goarch: amd64
   - image_templates:
-      - "containerssh/agent:latest"
-      - "containerssh/agent:{{ .Tag }}"
-      - "quay.io/containerssh/agent:latest"
-      - "quay.io/containerssh/agent:{{ .Tag }}"
+      - "quay.io/arres/containerssh/agent:latest"
+      - "quay.io/arres/containerssh/agent:{{ .Tag }}"
     dockerfile: Dockerfile
     goarch: arm64
 source:
@@ -82,8 +78,8 @@ signs:
 dist: build
 release:
   github:
-    owner: containerssh
-    name: agent
+    owner: RockinRoel
+    name: containerssh-agent
   prerelease: auto
   extra_files:
     - glob: LICENSE
